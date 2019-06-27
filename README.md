@@ -1,1 +1,5 @@
 # inhuman
+
+```shell
+inhuman --help
+```
