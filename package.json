@@ -1,0 +1,25 @@
+{
+  "name": "inhuman",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getsentry/inhuman.git"
+  },
+  "author": "David Cramer <dcramer@gmail.com> (https://github.com/dcramer)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/getsentry/inhuman/issues"
+  },
+  "bin": "./cli.js",
+  "homepage": "https://github.com/getsentry/inhuman#readme",
+  "dependencies": {
+    "http-mitm-proxy": "^0.7.0",
+    "puppeteer": "^1.18.1",
+    "yargs": "^13.2.4"
+  }
+}
