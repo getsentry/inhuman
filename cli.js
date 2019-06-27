@@ -3,12 +3,12 @@
 const argv = require("yargs")
   .usage("Usage: $0 [options] <url>")
   .command(
-    "$0",
-    "",
+    "$0 <url>",
+    "Send the robots!",
     yargs => {
       yargs
         .option("debug", {
-          alias: "d",
+          type: "boolean",
           default: false
         })
         .option("dsn", {})
@@ -27,7 +27,7 @@ const argv = require("yargs")
       const Proxy = require("./lib/proxy");
 
       (async () => {
-        const initialUrl = argv._[0];
+        const initialUrl = argv.url;
         const screenshots = argv.screenshots || null;
 
         if (screenshots) {
@@ -39,7 +39,12 @@ const argv = require("yargs")
         }
 
         const maxConcurrency = argv.concurrency || os.cpus().length - 1;
-        const allowedDomains = [new URL(initialUrl).host];
+        const allowedDomains = [
+          new URL(initialUrl).host
+            .split(".")
+            .slice(-2)
+            .join(".")
+        ];
 
         const proxy = new Proxy({
           url: initialUrl,
