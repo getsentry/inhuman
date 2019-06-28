@@ -21,6 +21,9 @@ const argv = require("yargs")
         .option("allow-domain", {
           array: true
         })
+        .option("block", {
+          array: true
+        })
         .option("screenshots", {})
         .option("wait-until", {
           default: "networkidle2"
@@ -79,6 +82,7 @@ const argv = require("yargs")
           timeout: argv.timeout,
           verbose: argv.verbose,
           headless: !argv.debug,
+          blockList: argv.block,
           formConfigs: [
             {
               url: /\/auth\/login\/([^\/]+\/)?$/i,
