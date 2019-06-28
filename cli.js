@@ -11,8 +11,16 @@ const argv = require("yargs")
           type: "boolean",
           default: false
         })
+        .option("verbose", {
+          alias: "v",
+          type: "boolean",
+          default: false
+        })
         .option("dsn", {})
         .option("build-id", {})
+        .option("allow-domain", {
+          array: true
+        })
         .option("screenshots", {})
         .option("concurrency", {
           alias: "c"
@@ -45,7 +53,8 @@ const argv = require("yargs")
           new URL(initialUrl).host
             .split(".")
             .slice(-2)
-            .join(".")
+            .join("."),
+          ...(argv.allowDomain || [])
         ];
 
         const proxy = new Proxy({
@@ -53,7 +62,8 @@ const argv = require("yargs")
           dsn: argv.dsn,
           buildId: argv.buildId,
           debug: argv.debug,
-          domains: allowedDomains
+          domains: allowedDomains,
+          verbose: argv.verbose
         });
 
         const crawler = new Crawler({
@@ -61,6 +71,7 @@ const argv = require("yargs")
           proxy: proxy.address(),
           maxConcurrency,
           screenshots,
+          verbose: argv.verbose,
           headless: !argv.debug,
           formConfigs: [
             {
