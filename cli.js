@@ -16,7 +16,9 @@ const argv = require("yargs")
         .option("screenshots", {})
         .option("concurrency", {
           alias: "c"
-        });
+        })
+        .option("username", {})
+        .option("password", {});
     },
     argv => {
       const fs = require("fs");
