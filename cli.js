@@ -35,17 +35,14 @@ const argv = require("yargs")
 
       const Crawler = require("./lib/crawler");
       const Proxy = require("./lib/proxy");
+      const utils = require("./lib/utils");
 
       (async () => {
         const initialUrl = argv.url;
         const screenshots = argv.screenshots || null;
 
         if (screenshots) {
-          try {
-            fs.statSync(screenshots);
-          } catch (err) {
-            fs.mkdirSync(screenshots, { recursive: true });
-          }
+          await utils.execPromise(`mkdir -p ${screenshots}`);
         }
 
         const maxConcurrency = argv.concurrency || os.cpus().length - 1;
