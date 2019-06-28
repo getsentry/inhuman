@@ -74,6 +74,7 @@ const argv = require("yargs")
           proxy: proxy.address(),
           maxConcurrency,
           screenshots,
+          debug: argv.debug,
           waitUntil: argv.waitUntil,
           timeout: argv.timeout,
           verbose: argv.verbose,
