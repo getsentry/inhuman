@@ -22,6 +22,13 @@ const argv = require("yargs")
           array: true
         })
         .option("screenshots", {})
+        .option("wait-until", {
+          default: "networkidle2"
+        })
+        .option("timeout", {
+          type: "number",
+          default: 30000
+        })
         .option("concurrency", {
           alias: "c"
         })
@@ -67,6 +74,8 @@ const argv = require("yargs")
           proxy: proxy.address(),
           maxConcurrency,
           screenshots,
+          waitUntil: argv.waitUntil,
+          timeout: argv.timeout,
           verbose: argv.verbose,
           headless: !argv.debug,
           formConfigs: [
