@@ -29,7 +29,6 @@ const argv = require("yargs")
         .option("password", {});
     },
     argv => {
-      const fs = require("fs");
       const URL = require("url").URL;
       const os = require("os");
 
