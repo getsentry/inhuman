@@ -97,6 +97,7 @@ const argv = require("yargs")
           console.log(`-> initialUrl: ${initialUrl}`);
           console.log(`-> allowedDomains: ${allowedDomains}`);
           console.log(`-> proxy: ${proxy.address()}`);
+          console.log(`-> timeout: ${crawler.timeout}ms`);
           console.log("");
 
           await proxy.init();
